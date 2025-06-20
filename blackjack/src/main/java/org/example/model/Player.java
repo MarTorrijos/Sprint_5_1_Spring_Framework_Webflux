@@ -11,6 +11,12 @@ public class Player {
     private String name;  // 100 char
     private int gamesWon;
 
+    public Player(int id, String name, int gamesWon) {
+        this.id = id;
+        this.name = name;
+        this.gamesWon = gamesWon;
+    }
+
     public int getId() {
         return id;
     }

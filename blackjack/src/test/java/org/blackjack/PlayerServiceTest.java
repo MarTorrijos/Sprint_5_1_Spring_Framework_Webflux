@@ -26,6 +26,9 @@ class PlayerServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    // TODO
+    // testAddPlayer()
+
     @Test
     void testGetPlayer() {
         Player player = new Player(1, "Player1", 100);
@@ -39,5 +42,11 @@ class PlayerServiceTest {
 
         verify(playerRepository, times(1)).findById(1);
     }
+
+    // TODO
+    // testUpdatePlayer()
+
+    // TODO
+    // testDeletePlayer()
 
 }

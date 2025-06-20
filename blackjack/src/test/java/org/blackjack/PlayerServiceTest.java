@@ -26,8 +26,20 @@ class PlayerServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    // TODO
-    // testAddPlayer()
+    @Test
+    void testAddPlayer() {
+        Player player = new Player(1, "Player1", 100);
+
+        when(playerRepository.save(player)).thenReturn(Mono.just(player));
+
+        Mono<Player> resultMono = playerService.addPlayer(player);
+
+        StepVerifier.create(resultMono)
+                .expectNextMatches(player1 -> player1.getId() == 1 && player1.getName().equals("Player1"))
+                .verifyComplete();
+
+        verify(playerRepository, times(1)).save(player);
+    }
 
     @Test
     void testGetPlayer() {

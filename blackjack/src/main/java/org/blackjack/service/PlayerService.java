@@ -1,7 +1,7 @@
-package org.example.service;
+package org.blackjack.service;
 
-import org.example.model.Player;
-import org.example.repositories.PlayerRepository;
+import org.blackjack.model.Player;
+import org.blackjack.repositories.PlayerRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 

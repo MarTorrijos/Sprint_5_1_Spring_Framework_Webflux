@@ -1,6 +1,6 @@
-package org.example.repositories;
+package org.blackjack.repositories;
 
-import org.example.model.Game;
+import org.blackjack.model.Game;
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 import org.springframework.stereotype.Repository;
 

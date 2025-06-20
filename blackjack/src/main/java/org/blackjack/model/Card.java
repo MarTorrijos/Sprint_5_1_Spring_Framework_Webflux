@@ -1,6 +1,6 @@
-package org.example.model;
+package org.blackjack.model;
 
-import org.example.model.enums.Suit;
+import org.blackjack.model.enums.Suit;
 
 public class Card {
 

@@ -1,8 +1,8 @@
-package org.example;
+package org.blackjack;
 
-import org.example.model.Player;
-import org.example.repositories.PlayerRepository;
-import org.example.service.PlayerService;
+import org.blackjack.model.Player;
+import org.blackjack.repositories.PlayerRepository;
+import org.blackjack.service.PlayerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

@@ -1,4 +1,4 @@
-package org.example.advice;
+package org.blackjack.advice;
 
 public class GlobalExceptionHandler {
 

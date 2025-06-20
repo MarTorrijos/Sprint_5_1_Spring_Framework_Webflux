@@ -1,4 +1,4 @@
-package org.example.model.enums;
+package org.blackjack.model.enums;
 
 public enum Suit {
 

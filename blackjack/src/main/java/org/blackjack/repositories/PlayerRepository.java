@@ -1,6 +1,6 @@
-package org.example.repositories;
+package org.blackjack.repositories;
 
-import org.example.model.Player;
+import org.blackjack.model.Player;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 

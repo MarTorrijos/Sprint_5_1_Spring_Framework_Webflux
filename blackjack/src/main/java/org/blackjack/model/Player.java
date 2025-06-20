@@ -1,7 +1,11 @@
-package org.example.model;
+package org.blackjack.model;
 
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
+
+@Data
+
 
 @Table("players")
 public class Player {
@@ -10,6 +14,8 @@ public class Player {
     private int id;
     private String name;  // 100 char
     private int gamesWon;
+
+    public Player() {}
 
     public Player(int id, String name, int gamesWon) {
         this.id = id;

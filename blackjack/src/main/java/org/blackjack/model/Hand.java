@@ -1,4 +1,4 @@
-package org.example.model;
+package org.blackjack.model;
 
 import java.util.List;
 

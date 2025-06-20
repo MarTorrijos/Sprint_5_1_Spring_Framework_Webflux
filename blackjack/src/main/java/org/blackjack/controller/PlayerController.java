@@ -1,7 +1,7 @@
-package org.example.controller;
+package org.blackjack.controller;
 
-import org.example.model.Player;
-import org.example.service.PlayerService;
+import org.blackjack.model.Player;
+import org.blackjack.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

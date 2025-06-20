@@ -31,11 +31,29 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
-    // testImplementation "org.mockito:mockito-core:5.+"
+
+    testImplementation 'org.mockito:mockito-core:5.14.0'
+
     testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
     testCompileOnly("org.projectlombok:lombok:1.18.38")
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testRuntimeOnly 'org.mockito:mockito-inline:5.+'
+}
+
+configurations {
+    mockitoAgent
+}
+
+dependencies {
+    mockitoAgent('org.mockito:mockito-core:5.14.0') {
+        transitive = false
+    }
+}
+
+tasks {
+    test {
+        jvmArgs += "-Xshare:off"
+        jvmArgs += "-javaagent:${configurations.mockitoAgent.asPath}"
+    }
 }
 
 tasks.named('test') {

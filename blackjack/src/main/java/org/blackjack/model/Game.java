@@ -1,7 +1,14 @@
 package org.blackjack.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Document(collection = "games")
 public class Game {
@@ -13,53 +20,5 @@ public class Game {
     private Hand croupierHand;
     private String result;
     private int bet;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPlayer_id() {
-        return player_id;
-    }
-
-    public void setPlayer_id(String player_id) {
-        this.player_id = player_id;
-    }
-
-    public Hand getPlayerHand() {
-        return playerHand;
-    }
-
-    public void setPlayerHand(Hand playerHand) {
-        this.playerHand = playerHand;
-    }
-
-    public Hand getCroupierHand() {
-        return croupierHand;
-    }
-
-    public void setCroupierHand(Hand croupierHand) {
-        this.croupierHand = croupierHand;
-    }
-
-    public String getResult() {
-        return result;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
-    }
-
-    public int getBet() {
-        return bet;
-    }
-
-    public void setBet(int bet) {
-        this.bet = bet;
-    }
 
 }

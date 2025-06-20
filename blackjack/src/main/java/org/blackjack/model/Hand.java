@@ -1,17 +1,17 @@
 package org.blackjack.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 
 public class Hand {
 
     private List<Card> cards;
-
-    public List<Card> getCards() {
-        return cards;
-    }
-
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
-    }
 
 }

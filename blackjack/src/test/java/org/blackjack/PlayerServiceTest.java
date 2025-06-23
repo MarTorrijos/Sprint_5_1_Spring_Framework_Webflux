@@ -32,7 +32,12 @@ class PlayerServiceTest {
     @Test
     void testAddPlayer() {
         when(playerRepository.save(testPlayer)).thenReturn(Mono.just(testPlayer));
+
         Mono<Player> resultMono = playerService.addPlayer(testPlayer);
+
+        StepVerifier.create(resultMono)
+                .expectNext(testPlayer)
+                .verifyComplete();
 
         verify(playerRepository, times(1)).save(testPlayer);
     }
@@ -40,16 +45,41 @@ class PlayerServiceTest {
     @Test
     void testGetPlayer() {
         when(playerRepository.findById(1)).thenReturn(Mono.just(testPlayer));
+
         Mono<Player> resultMono = playerService.getPlayer(1);
+
+        StepVerifier.create(resultMono)
+                .expectNext(testPlayer)
+                .verifyComplete();
 
         verify(playerRepository, times(1)).findById(1);
     }
 
-    // TODO
-    // testUpdatePlayer()
 
-    // TODO
-    // testDeletePlayer()
+    @Test
+    void testUpdatePlayer() {
+        when(playerRepository.save(testPlayer)).thenReturn(Mono.just(testPlayer));
+
+        Mono<Player> resultMono = playerService.updatePlayer(testPlayer);
+
+        StepVerifier.create(resultMono)
+                .expectNext(testPlayer)
+                .verifyComplete();
+
+        verify(playerRepository, times(1)).save(testPlayer);
+    }
+
+    @Test
+    void testDeletePlayer() {
+        when(playerRepository.deleteById(1)).thenReturn(Mono.empty());
+
+        Mono<Void> resultMono = playerService.deletePlayer(1);
+
+        StepVerifier.create(resultMono)
+                .verifyComplete();
+
+        verify(playerRepository, times(1)).deleteById(1);
+    }
 
     // More testing?
 

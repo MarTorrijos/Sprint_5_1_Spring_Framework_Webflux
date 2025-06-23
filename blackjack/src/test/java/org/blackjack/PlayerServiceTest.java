@@ -44,15 +44,15 @@ class PlayerServiceTest {
 
     @Test
     void testGetPlayer() {
-        when(playerRepository.findById(1)).thenReturn(Mono.just(testPlayer));
+        when(playerRepository.findById(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
 
-        Mono<Player> resultMono = playerService.getPlayer(1);
+        Mono<Player> resultMono = playerService.getPlayer(testPlayer.getId());
 
         StepVerifier.create(resultMono)
                 .expectNext(testPlayer)
                 .verifyComplete();
 
-        verify(playerRepository, times(1)).findById(1);
+        verify(playerRepository, times(1)).findById(testPlayer.getId());
     }
 
 
@@ -73,7 +73,7 @@ class PlayerServiceTest {
     void testDeletePlayer() {
         when(playerRepository.deleteById(testPlayer.getId())).thenReturn(Mono.empty());
 
-        Mono<Void> resultMono = playerService.deletePlayer(1);
+        Mono<Void> resultMono = playerService.deletePlayer(testPlayer.getId());
 
         StepVerifier.create(resultMono)
                 .verifyComplete();

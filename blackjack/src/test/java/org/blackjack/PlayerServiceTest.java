@@ -71,16 +71,14 @@ class PlayerServiceTest {
 
     @Test
     void testDeletePlayer() {
-        when(playerRepository.deleteById(1)).thenReturn(Mono.empty());
+        when(playerRepository.deleteById(testPlayer.getId())).thenReturn(Mono.empty());
 
         Mono<Void> resultMono = playerService.deletePlayer(1);
 
         StepVerifier.create(resultMono)
                 .verifyComplete();
 
-        verify(playerRepository, times(1)).deleteById(1);
+        verify(playerRepository, times(1)).deleteById(testPlayer.getId());
     }
-
-    // More testing?
 
 }

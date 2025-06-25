@@ -20,11 +20,11 @@ public class GameService {
     }
 
     public Mono<Game> getGame(ObjectId id) {
-        return gameRepository.findByObjectId(id);
+        return gameRepository.findById(id);
     }
 
     public Mono<Game> updateGame(ObjectId id, Game game) {
-        return gameRepository.findByObjectId(id)
+        return gameRepository.findById(id)
                 .flatMap(existingGame -> {
                     game.setId(id);
                     return gameRepository.save(game);
@@ -32,8 +32,8 @@ public class GameService {
     }
 
     public Mono<Boolean> deleteGame(ObjectId id) {
-        return gameRepository.findByObjectId(id)
-                .flatMap(game -> gameRepository.deleteByObjectId(id).thenReturn(true))
+        return gameRepository.findById(id)
+                .flatMap(game -> gameRepository.deleteById(id).thenReturn(true))
                 .defaultIfEmpty(false);
     }
 

@@ -7,9 +7,9 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface GameRepository extends ReactiveMongoRepository<Game, Integer> {
+public interface GameRepository extends ReactiveMongoRepository<Game, ObjectId> {
 
-    Mono<Game> findByObjectId(ObjectId id);
+    Mono<Game> findById(ObjectId id);
 
-    <T> Mono<T> deleteByObjectId(ObjectId id);
+    Mono<Void> deleteById(ObjectId id);
 }

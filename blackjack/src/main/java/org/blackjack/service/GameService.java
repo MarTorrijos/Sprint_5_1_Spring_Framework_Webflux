@@ -20,7 +20,7 @@ public class GameService {
     }
 
     public Mono<Game> getGame(ObjectId id) {
-        return gameRepository.findById(id);
+        return gameRepository.findByObjectId(id);
     }
 
     public Mono<Game> updateGame(ObjectId id, Game game) {

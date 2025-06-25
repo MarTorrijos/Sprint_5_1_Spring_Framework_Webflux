@@ -2,6 +2,7 @@ package org.blackjack.service;
 
 import org.blackjack.model.Game;
 import org.blackjack.repositories.GameRepository;
+import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -18,21 +19,21 @@ public class GameService {
         return gameRepository.save(game);
     }
 
-    public Mono<Game> getGame(int id) {
+    public Mono<Game> getGame(ObjectId id) {
         return gameRepository.findById(id);
     }
 
-    public Mono<Game> updateGame(int id, Game game) {
-        return gameRepository.findById(id)
+    public Mono<Game> updateGame(ObjectId id, Game game) {
+        return gameRepository.findByObjectId(id)
                 .flatMap(existingGame -> {
                     game.setId(id);
                     return gameRepository.save(game);
                 });
     }
 
-    public Mono<Boolean> deleteGame(int id) {
-        return gameRepository.findById(id)
-                .flatMap(game -> gameRepository.deleteById(id).thenReturn(true))
+    public Mono<Boolean> deleteGame(ObjectId id) {
+        return gameRepository.findByObjectId(id)
+                .flatMap(game -> gameRepository.deleteByObjectId(id).thenReturn(true))
                 .defaultIfEmpty(false);
     }
 

@@ -1,5 +1,8 @@
 package org.blackjack.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.blackjack.model.Game;
 import org.blackjack.service.GameService;
 import org.bson.types.ObjectId;
@@ -18,19 +21,34 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @PostMapping("")
+    @Operation(summary = "Create a new game")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Game created"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+    })
+    @PostMapping
     public Mono<ResponseEntity<Game>> addGame(@RequestBody Game game) {
         return gameService.addGame(game)
                 .map(savedGame -> ResponseEntity.status(HttpStatus.CREATED).body(savedGame));
     }
 
-    @GetMapping("/{id")
+    @Operation(summary = "Get a game by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Game found"),
+            @ApiResponse(responseCode = "204", description = "No game found by this id")
+    })
+    @GetMapping("/{id}")
     public Mono<ResponseEntity<Game>> getGame(@PathVariable ObjectId id) {
         return gameService.getGame(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Update a game selected by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Game updated successfully"),
+            @ApiResponse(responseCode = "204", description = "No game found by this id")
+    })
     @PutMapping("/{id}")
     public Mono<ResponseEntity<Game>> updateGame(@PathVariable ObjectId id, @RequestBody Game game) {
         return gameService.updateGame(id, game)
@@ -38,6 +56,11 @@ public class GameController {
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
+    @Operation(summary = "Delete a game selected by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Game deleted successfully"),
+            @ApiResponse(responseCode = "204", description = "No game found by this id")
+    })
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Game>> deleteGame(@PathVariable ObjectId id) {
         return gameService.deleteGame(id)

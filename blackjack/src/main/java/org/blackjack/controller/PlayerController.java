@@ -32,23 +32,15 @@ public class PlayerController {
 
     @PutMapping("/{id}")
     public Mono<ResponseEntity<Player>> updatePlayer(@PathVariable int id, @RequestBody Player player) {
-        return playerService.getPlayer(id)
-                .flatMap(existingPlayer -> {
-                    player.setId(id);
-                    return playerService.updatePlayer(player)
-                            .map(ResponseEntity::ok);
-                })
+        return playerService.updatePlayer(id, player)
+                .map(ResponseEntity::ok)
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> deletePlayer(@PathVariable int id) {
-        return playerService.getPlayer(id)
-                .flatMap(existingPlayer ->
-                        playerService.deletePlayer(id)
-                                .then(Mono.just(ResponseEntity.ok().<Void>build()))
-                )
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+        return playerService.deletePlayer(id)
+                .map(deleted -> deleted ? ResponseEntity.ok().<Void>build() : ResponseEntity.notFound().build());
     }
 
 }

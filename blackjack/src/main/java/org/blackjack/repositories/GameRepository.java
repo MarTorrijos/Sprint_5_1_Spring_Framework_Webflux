@@ -9,7 +9,7 @@ import reactor.core.publisher.Mono;
 @Repository
 public interface GameRepository extends ReactiveMongoRepository<Game, Integer> {
 
-    Mono<Object> findByObjectId(ObjectId id);
+    Mono<Game> findByObjectId(ObjectId id);
 
     <T> Mono<T> deleteByObjectId(ObjectId id);
 }

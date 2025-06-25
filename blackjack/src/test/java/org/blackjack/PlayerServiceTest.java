@@ -55,29 +55,33 @@ class PlayerServiceTest {
         verify(playerRepository, times(1)).findById(testPlayer.getId());
     }
 
-
     @Test
     void testUpdatePlayer() {
+        when(playerRepository.findById(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
         when(playerRepository.save(testPlayer)).thenReturn(Mono.just(testPlayer));
 
-        Mono<Player> resultMono = playerService.updatePlayer(testPlayer);
+        Mono<Player> resultMono = playerService.updatePlayer(testPlayer.getId(), testPlayer);
 
         StepVerifier.create(resultMono)
                 .expectNext(testPlayer)
                 .verifyComplete();
 
+        verify(playerRepository, times(1)).findById(testPlayer.getId());
         verify(playerRepository, times(1)).save(testPlayer);
     }
 
     @Test
     void testDeletePlayer() {
+        when(playerRepository.findById(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
         when(playerRepository.deleteById(testPlayer.getId())).thenReturn(Mono.empty());
 
-        Mono<Void> resultMono = playerService.deletePlayer(testPlayer.getId());
+        Mono<Boolean> resultMono = playerService.deletePlayer(testPlayer.getId());
 
         StepVerifier.create(resultMono)
+                .expectNext(true)
                 .verifyComplete();
 
+        verify(playerRepository, times(1)).findById(testPlayer.getId());
         verify(playerRepository, times(1)).deleteById(testPlayer.getId());
     }
 

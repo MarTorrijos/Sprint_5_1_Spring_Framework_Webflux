@@ -63,34 +63,34 @@ public class PlayerControllerTest {
 
     @Test
     void updatePlayer() {
-        when(playerService.getPlayer(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
-        when(playerService.updatePlayer(testPlayer)).thenReturn(Mono.just(testPlayer));
+        int playerId = testPlayer.getId();
 
-        Mono<ResponseEntity<Player>> responseMono = playerController.updatePlayer(testPlayer.getId(), testPlayer);
+        when(playerService.updatePlayer(playerId, testPlayer)).thenReturn(Mono.just(testPlayer));
+
+        Mono<ResponseEntity<Player>> responseMono = playerController.updatePlayer(playerId, testPlayer);
 
         ResponseEntity<Player> response = responseMono.block();
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(testPlayer, response.getBody());
 
-        verify(playerService, times(1)).getPlayer(testPlayer.getId());
-        verify(playerService, times(1)).updatePlayer(testPlayer);
+        verify(playerService, times(1)).updatePlayer(playerId, testPlayer);
     }
 
     @Test
     void deletePlayer() {
-        when(playerService.getPlayer(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
-        when(playerService.deletePlayer(testPlayer.getId())).thenReturn(Mono.empty());
+        int playerId = testPlayer.getId();
 
-        Mono<ResponseEntity<Void>> responseMono = playerController.deletePlayer(testPlayer.getId());
+        when(playerService.deletePlayer(playerId)).thenReturn(Mono.just(true));
+
+        Mono<ResponseEntity<Void>> responseMono = playerController.deletePlayer(playerId);
 
         ResponseEntity<Void> response = responseMono.block();
         assertNotNull(response);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNull(response.getBody());
 
-        verify(playerService, times(1)).getPlayer(testPlayer.getId());
-        verify(playerService, times(1)).deletePlayer(testPlayer.getId());
+        verify(playerService, times(1)).deletePlayer(playerId);
     }
 
 }

@@ -21,6 +21,10 @@ public class TurnService {
     public Mono<Game> dealCardToPlayer(String gameId) {
         return gameRepository.findById(gameId)
                 .flatMap(game -> {
+                    if (game.getGameStatus() == GameStatus.FINISHED) {
+                        return Mono.error(new IllegalStateException("Cannot deal card, game is finished"));
+                    }
+
                     if (game.getDeck() == null) {
                         Deck deck = new Deck();
                         game.setDeck(deck);
@@ -47,13 +51,13 @@ public class TurnService {
                 });
     }
 
-    public Mono<Game> playerStands(String gameId) {
+    public Mono<Boolean> playerStands(String gameId) {
         return gameRepository.findById(gameId)
                 .flatMap(game -> {
                     game.setGameStatus(GameStatus.FINISHED);
-
-                    return gameRepository.save(game);
-                });
+                    return gameRepository.save(game).map(savedGame -> true);
+                })
+                .defaultIfEmpty(false);
     }
 
 }

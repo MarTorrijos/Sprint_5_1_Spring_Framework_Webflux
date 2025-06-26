@@ -1,6 +1,6 @@
 package org.blackjack.model.enums;
 
-public enum Rank {
+public enum CardRank {
     TWO(2),
     THREE(3),
     FOUR(4),
@@ -17,7 +17,7 @@ public enum Rank {
 
     private final int value;
 
-    Rank(int value) {
+    CardRank(int value) {
         this.value = value;
     }
 

@@ -1,5 +1,8 @@
 package org.blackjack.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.blackjack.model.Player;
 import org.blackjack.service.PlayerService;
 import org.springframework.http.HttpStatus;
@@ -17,12 +20,22 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    @PostMapping("")
+    @Operation(summary = "Create a new player")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Player created"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+    })
+    @PostMapping
     public Mono<ResponseEntity<Player>> addPlayer(@RequestBody Player player) {
         return playerService.addPlayer(player)
                 .map(savedPlayer -> ResponseEntity.status(HttpStatus.CREATED).body(savedPlayer));
     }
 
+    @Operation(summary = "Get a player by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Player found"),
+            @ApiResponse(responseCode = "204", description = "No player found by this id")
+    })
     @GetMapping("/{id}")
     public Mono<ResponseEntity<Player>> getPlayer(@PathVariable int id) {
         return playerService.getPlayer(id)
@@ -30,6 +43,11 @@ public class PlayerController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Update a player selected by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Player updated successfully"),
+            @ApiResponse(responseCode = "204", description = "No player found by this id")
+    })
     @PutMapping("/{id}")
     public Mono<ResponseEntity<Player>> updatePlayer(@PathVariable int id, @RequestBody Player player) {
         return playerService.updatePlayer(id, player)
@@ -37,10 +55,15 @@ public class PlayerController {
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
+    @Operation(summary = "Delete a player selected by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Player deleted successfully"),
+            @ApiResponse(responseCode = "204", description = "No player found by this id")
+    })
     @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> deletePlayer(@PathVariable int id) {
         return playerService.deletePlayer(id)
-                .map(deleted -> deleted ? ResponseEntity.ok().<Void>build() : ResponseEntity.notFound().build());
+                .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
     }
 
 }

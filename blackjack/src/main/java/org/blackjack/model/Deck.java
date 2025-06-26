@@ -1,7 +1,7 @@
 package org.blackjack.model;
 
-import org.blackjack.model.enums.Rank;
-import org.blackjack.model.enums.Suit;
+import org.blackjack.model.enums.CardRank;
+import org.blackjack.model.enums.CardSuit;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,8 +17,8 @@ public class Deck {
 
     public void reset() {
         cards = new ArrayList<>();
-        for (Suit suit : Suit.values()) {
-            for (Rank rank : Rank.values()) {
+        for (CardSuit suit : CardSuit.values()) {
+            for (CardRank rank : CardRank.values()) {
                 cards.add(new Card(rank, suit));
             }
         }

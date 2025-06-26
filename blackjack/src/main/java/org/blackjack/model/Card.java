@@ -3,8 +3,8 @@ package org.blackjack.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.blackjack.model.enums.Rank;
-import org.blackjack.model.enums.Suit;
+import org.blackjack.model.enums.CardRank;
+import org.blackjack.model.enums.CardSuit;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +12,7 @@ import org.blackjack.model.enums.Suit;
 
 public class Card {
 
-    private Rank rank;
-    private Suit suit;
+    private CardRank rank;
+    private CardSuit suit;
 
 }

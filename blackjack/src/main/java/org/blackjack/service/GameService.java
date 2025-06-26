@@ -28,6 +28,10 @@ public class GameService {
         return gameRepository.findById(id);
     }
 
+    public Flux<Game> getAllGames() {
+        return gameRepository.findAll();
+    }
+
     public Mono<Boolean> deleteGame(String id) {
         return gameRepository.findById(id)
                 .flatMap(game -> gameRepository.deleteById(id).thenReturn(true))

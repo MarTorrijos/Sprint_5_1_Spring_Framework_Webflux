@@ -8,6 +8,7 @@ import org.blackjack.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -41,6 +42,17 @@ public class GameController {
         return gameService.getGame(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @Operation(summary = "Get all games")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "All games"),
+            @ApiResponse(responseCode = "204", description = "No games found")
+    })
+    @GetMapping
+    public Flux<ResponseEntity<Game>> getAllGames() {
+        return gameService.getAllGames()
+                .map(ResponseEntity::ok);
     }
 
     @Operation(summary = "Delete a game selected by its id")

@@ -66,11 +66,4 @@ public class GameController {
                 .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/{id}/hit")
-    public Mono<ResponseEntity<Game>> giveCardToPlayer(@PathVariable String id) {
-        return gameService.giveCardToPlayer(id)
-                .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
-    }
-
 }

@@ -33,8 +33,7 @@ public class Deck {
         if (cards.isEmpty()) {
             throw new IllegalStateException("No more cards in the deck");
         }
-
-        return cards.removeFirst();
+        return cards.remove(0);
     }
 
     public int remainingCards() {

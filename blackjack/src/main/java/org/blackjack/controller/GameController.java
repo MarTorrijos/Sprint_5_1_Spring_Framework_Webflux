@@ -26,8 +26,8 @@ public class GameController {
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
     @PostMapping
-    public Mono<ResponseEntity<Game>> addGame(@RequestBody Game game) {
-        return gameService.addGame(game)
+    public Mono<ResponseEntity<Game>> createGame(@RequestBody Game game) {
+        return gameService.createGame(game)
                 .map(savedGame -> ResponseEntity.status(HttpStatus.CREATED).body(savedGame));
     }
 
@@ -43,18 +43,6 @@ public class GameController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
-    @Operation(summary = "Update a game selected by its id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Game updated successfully"),
-            @ApiResponse(responseCode = "204", description = "No game found by this id")
-    })
-    @PutMapping("/{id}")
-    public Mono<ResponseEntity<Game>> updateGame(@PathVariable String id, @RequestBody Game game) {
-        return gameService.updateGame(id, game)
-                .map(ResponseEntity::ok)
-                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
-    }
-
     @Operation(summary = "Delete a game selected by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Game deleted successfully"),
@@ -64,6 +52,13 @@ public class GameController {
     public Mono<ResponseEntity<Game>> deleteGame(@PathVariable String id) {
         return gameService.deleteGame(id)
                 .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{id}/hit")
+    public Mono<ResponseEntity<Game>> giveCardToPlayer(@PathVariable String id) {
+        return gameService.giveCardToPlayer(id)
+                .map(ResponseEntity::ok)
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 }

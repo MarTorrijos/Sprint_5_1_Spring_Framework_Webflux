@@ -4,6 +4,7 @@ import org.blackjack.model.Card;
 import org.blackjack.model.Deck;
 import org.blackjack.model.Game;
 import org.blackjack.model.Hand;
+import org.blackjack.model.enums.GameStatus;
 import org.blackjack.repositories.GameRepository;
 import reactor.core.publisher.Mono;
 
@@ -47,9 +48,12 @@ public class TurnService {
     }
 
     public Mono<Game> playerStands(String gameId) {
-        return gameRepository.findById(gameId);
-                // cambiar el estado del Game a finished
-                // falta añadir eso a Game
+        return gameRepository.findById(gameId)
+                .flatMap(game -> {
+                    game.setGameStatus(GameStatus.FINISHED);
+
+                    return gameRepository.save(game);
+                });
     }
 
 }

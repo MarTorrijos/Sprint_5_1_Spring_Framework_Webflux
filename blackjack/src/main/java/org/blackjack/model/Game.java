@@ -24,7 +24,7 @@ public class Game {
     @JsonIgnore
     private Deck deck;
 
-    private GameStatus status;
+    private GameStatus gameStatus;
     private String result;
     private int bet;
 

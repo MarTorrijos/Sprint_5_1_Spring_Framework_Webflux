@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.blackjack.model.Game;
 import org.blackjack.service.GameService;
-import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +37,7 @@ public class GameController {
             @ApiResponse(responseCode = "204", description = "No game found by this id")
     })
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Game>> getGame(@PathVariable ObjectId id) {
+    public Mono<ResponseEntity<Game>> getGame(@PathVariable String id) {
         return gameService.getGame(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -50,7 +49,7 @@ public class GameController {
             @ApiResponse(responseCode = "204", description = "No game found by this id")
     })
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Game>> updateGame(@PathVariable ObjectId id, @RequestBody Game game) {
+    public Mono<ResponseEntity<Game>> updateGame(@PathVariable String id, @RequestBody Game game) {
         return gameService.updateGame(id, game)
                 .map(ResponseEntity::ok)
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
@@ -62,7 +61,7 @@ public class GameController {
             @ApiResponse(responseCode = "204", description = "No game found by this id")
     })
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Game>> deleteGame(@PathVariable ObjectId id) {
+    public Mono<ResponseEntity<Game>> deleteGame(@PathVariable String id) {
         return gameService.deleteGame(id)
                 .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
     }

@@ -1,6 +1,7 @@
 package org.blackjack.service;
 
 import org.blackjack.model.Card;
+import org.blackjack.model.Deck;
 import org.blackjack.model.Game;
 import org.blackjack.model.enums.GameStatus;
 import org.blackjack.repositories.GameRepository;
@@ -19,10 +20,12 @@ public class TurnService {
     public Mono<Game> dealCardToPlayer(String gameId) {
         return gameRepository.findById(gameId)
                 .flatMap(this::validateGameStatus)
+                .flatMap(this::initializeDeckIfNeeded)
                 .flatMap(game -> drawCardFromDeck(game)
                         .flatMap(newCard -> updatePlayerHand(newCard, game)))
                 .flatMap(gameRepository::save);
     }
+
 
     private Mono<Game> validateGameStatus(Game game) {
         if (game.getGameStatus() == GameStatus.FINISHED) {
@@ -44,6 +47,15 @@ public class TurnService {
         game.getPlayerHand().getCards().add(newCard);
         return Mono.just(game);
     }
+
+    private Mono<Game> initializeDeckIfNeeded(Game game) {
+        if (game.getDeck() == null) {
+            game.setDeck(new Deck()); // Create a new deck if it's null
+            game.getDeck().reset();   // Reset the deck to initialize cards
+        }
+        return Mono.just(game);
+    }
+
 
     public Mono<Boolean> playerStands(String gameId) {
         return gameRepository.findById(gameId)

@@ -35,6 +35,20 @@ public class TurnService {
         return Mono.just(game);
     }
 
+    public Mono<Game> dealCardToCroupier(String gameId) {
+        return gameRepository.findById(gameId)
+                .flatMap(gameValidator::validateGameStatus)
+                .flatMap(deckService::initializeDeck)
+                .flatMap(game -> deckService.drawCard(game)
+                        .flatMap(newCard -> updateCroupierHand(newCard, game)))
+                .flatMap(gameRepository::save);
+    }
+
+    private Mono<Game> updateCroupierHand(Card newCard, Game game) {
+        game.getCroupierHand().getCards().add(newCard);
+        return Mono.just(game);
+    }
+
     public Mono<String> playerStands(String gameId) {
         return gameRepository.findById(gameId)
                 .flatMap(game -> {

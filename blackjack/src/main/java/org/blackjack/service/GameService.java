@@ -37,9 +37,11 @@ public class GameService {
 
         return Mono.just(game)
                 .flatMap(gameRepository::save)
-                .flatMap(savedGame -> turnService.dealCardToPlayer(savedGame.getId())
-                        .flatMap(Mono::just))
-                .defaultIfEmpty(game);
+                .flatMap(savedGame ->
+                        turnService.dealCardToPlayer(savedGame.getId())
+                                .then(turnService.dealCardToCroupier(savedGame.getId()))
+                                .thenReturn(savedGame)
+                );
     }
 
     public Mono<Game> getGame(String id) {

@@ -36,8 +36,4 @@ public class Deck {
         return cards.remove(0);
     }
 
-    public int remainingCards() {
-        return cards.size();
-    }
-
 }

@@ -17,7 +17,7 @@ public class Game {
 
     @Id
     private String id;
-    private String player_id;
+    private int player_id;
     private Hand playerHand;
     private Hand croupierHand;
 

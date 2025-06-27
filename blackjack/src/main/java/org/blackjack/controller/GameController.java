@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.blackjack.model.Game;
-import org.blackjack.model.enums.GameStatus;
 import org.blackjack.service.GameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +28,6 @@ public class GameController {
     })
     @PostMapping
     public Mono<ResponseEntity<Game>> createGame(@RequestBody Game game) {
-        game.setGameStatus(GameStatus.PLAYING);
         return gameService.createGame(game)
                 .map(savedGame -> ResponseEntity.status(HttpStatus.CREATED).body(savedGame));
     }

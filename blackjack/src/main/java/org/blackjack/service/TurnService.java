@@ -34,9 +34,7 @@ public class TurnService {
 
     private Mono<Card> drawCardFromDeck(Game game) {
         return deckValidator.validateDeck(game.getDeck())
-                .then(Mono.fromCallable(() -> game.getDeck().drawCard()))
-                .flatMap(card -> deckValidator.validateCard(card)
-                        .thenReturn(card));
+                .then(Mono.fromCallable(() -> game.getDeck().drawCard()));
     }
 
     private Mono<Game> updatePlayerHand(Card newCard, Game game) {
@@ -44,7 +42,7 @@ public class TurnService {
         return Mono.just(game);
     }
 
-    private Mono<Game> initializeDeckIfNeeded(Game game) {
+    public Mono<Game> initializeDeckIfNeeded(Game game) {
         if (game.getDeck() == null) {
             game.setDeck(new Deck());
             game.getDeck().reset();
@@ -52,13 +50,14 @@ public class TurnService {
         return Mono.just(game);
     }
 
-    public Mono<Boolean> playerStands(String gameId) {
+    public Mono<String> playerStands(String gameId) {
         return gameRepository.findById(gameId)
                 .flatMap(game -> {
                     game.setGameStatus(GameStatus.FINISHED);
-                    return gameRepository.save(game).map(savedGame -> true);
+                    return gameRepository.save(game)
+                            .then(Mono.just("Player has stood. Game is now finished."));
                 })
-                .defaultIfEmpty(false);
+                .defaultIfEmpty("Game not found or already finished.");
     }
 
 }

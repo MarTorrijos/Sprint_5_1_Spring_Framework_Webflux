@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.blackjack.exceptions.GameFinishedException;
-import org.blackjack.model.Game;
 import org.blackjack.service.TurnService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +41,15 @@ public class TurnController {
     }
 
     @PutMapping("/{id}/stand")
-    public Mono<ResponseEntity<Void>> playerStands(@PathVariable String id) {
+    public Mono<ResponseEntity<Object>> playerStands(@PathVariable String id) {
         return turnService.playerStands(id)
-                .map(updated -> updated ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
+                .map(message -> ResponseEntity.ok((Object) message))
+                .onErrorResume(GameFinishedException.class, e -> {
+                    Map<String, String> errorResponse = new HashMap<>();
+                    errorResponse.put("message", e.getMessage());
+                    return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse));
+                })
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
 }

@@ -1,5 +1,6 @@
 package org.blackjack.service;
 
+import org.blackjack.exceptions.GameFinishedException;
 import org.blackjack.model.Card;
 import org.blackjack.model.Deck;
 import org.blackjack.model.Game;
@@ -26,10 +27,10 @@ public class TurnService {
                 .flatMap(gameRepository::save);
     }
 
-
     private Mono<Game> validateGameStatus(Game game) {
         if (game.getGameStatus() == GameStatus.FINISHED) {
-            return Mono.error(new IllegalStateException("Cannot deal card, game is finished"));
+            // Throw a custom exception when the game is finished
+            return Mono.error(new GameFinishedException("Game is already finished. No more cards can be dealt."));
         }
         return Mono.just(game);
     }
@@ -50,12 +51,11 @@ public class TurnService {
 
     private Mono<Game> initializeDeckIfNeeded(Game game) {
         if (game.getDeck() == null) {
-            game.setDeck(new Deck()); // Create a new deck if it's null
-            game.getDeck().reset();   // Reset the deck to initialize cards
+            game.setDeck(new Deck());
+            game.getDeck().reset();
         }
         return Mono.just(game);
     }
-
 
     public Mono<Boolean> playerStands(String gameId) {
         return gameRepository.findById(gameId)

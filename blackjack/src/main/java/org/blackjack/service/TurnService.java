@@ -1,11 +1,12 @@
 package org.blackjack.service;
 
-import org.blackjack.exceptions.GameFinishedException;
 import org.blackjack.model.Card;
 import org.blackjack.model.Deck;
 import org.blackjack.model.Game;
 import org.blackjack.model.enums.GameStatus;
 import org.blackjack.repositories.GameRepository;
+import org.blackjack.validations.DeckValidator;
+import org.blackjack.validations.GameValidator;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -13,34 +14,29 @@ import reactor.core.publisher.Mono;
 public class TurnService {
 
     private final GameRepository gameRepository;
+    private final GameValidator gameValidator;
+    private final DeckValidator deckValidator;
 
-    public TurnService(GameRepository gameRepository) {
+    public TurnService(GameRepository gameRepository, GameValidator gameValidator, DeckValidator deckValidator) {
         this.gameRepository = gameRepository;
+        this.gameValidator = gameValidator;
+        this.deckValidator = deckValidator;
     }
 
     public Mono<Game> dealCardToPlayer(String gameId) {
         return gameRepository.findById(gameId)
-                .flatMap(this::validateGameStatus)
+                .flatMap(gameValidator::validateGameStatus)
                 .flatMap(this::initializeDeckIfNeeded)
                 .flatMap(game -> drawCardFromDeck(game)
                         .flatMap(newCard -> updatePlayerHand(newCard, game)))
                 .flatMap(gameRepository::save);
     }
 
-    private Mono<Game> validateGameStatus(Game game) {
-        if (game.getGameStatus() == GameStatus.FINISHED) {
-            return Mono.error(new GameFinishedException("Game is already finished. No more cards can be dealt."));
-        }
-        return Mono.just(game);
-    }
-
     private Mono<Card> drawCardFromDeck(Game game) {
-        try {
-            Card newCard = game.getDeck().drawCard();
-            return Mono.just(newCard);
-        } catch (IllegalStateException e) {
-            return Mono.error(new RuntimeException("Deck is empty"));
-        }
+        return deckValidator.validateDeck(game.getDeck())
+                .then(Mono.fromCallable(() -> game.getDeck().drawCard()))
+                .flatMap(card -> deckValidator.validateCard(card)
+                        .thenReturn(card));
     }
 
     private Mono<Game> updatePlayerHand(Card newCard, Game game) {

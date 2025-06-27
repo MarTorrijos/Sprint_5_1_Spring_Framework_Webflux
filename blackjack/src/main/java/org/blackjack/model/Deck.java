@@ -1,5 +1,6 @@
 package org.blackjack.model;
 
+import lombok.Getter;
 import org.blackjack.model.enums.CardRank;
 import org.blackjack.model.enums.CardSuit;
 
@@ -7,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Getter
 public class Deck {
 
     private List<Card> cards;
@@ -33,7 +35,7 @@ public class Deck {
         if (cards.isEmpty()) {
             throw new IllegalStateException("No more cards in the deck");
         }
-        return cards.remove(0);
+        return cards.removeFirst();
     }
 
 }

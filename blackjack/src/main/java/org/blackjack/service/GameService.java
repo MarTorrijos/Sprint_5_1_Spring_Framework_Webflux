@@ -13,9 +13,11 @@ import reactor.core.publisher.Mono;
 public class GameService {
 
     private final GameRepository gameRepository;
+    private final TurnService turnService;
 
-    public GameService(GameRepository gameRepository) {
+    public GameService(GameRepository gameRepository, TurnService turnService) {
         this.gameRepository = gameRepository;
+        this.turnService = turnService;
     }
 
     public Mono<Game> createGame(Game game) {
@@ -35,6 +37,8 @@ public class GameService {
 
         return Mono.just(game)
                 .flatMap(gameRepository::save)
+                .flatMap(savedGame -> turnService.dealCardToPlayer(savedGame.getId())
+                        .flatMap(Mono::just))
                 .defaultIfEmpty(game);
     }
 

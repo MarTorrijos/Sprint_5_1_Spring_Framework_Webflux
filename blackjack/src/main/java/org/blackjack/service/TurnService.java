@@ -29,7 +29,6 @@ public class TurnService {
 
     private Mono<Game> validateGameStatus(Game game) {
         if (game.getGameStatus() == GameStatus.FINISHED) {
-            // Throw a custom exception when the game is finished
             return Mono.error(new GameFinishedException("Game is already finished. No more cards can be dealt."));
         }
         return Mono.just(game);

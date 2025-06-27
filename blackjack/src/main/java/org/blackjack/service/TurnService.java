@@ -4,8 +4,10 @@ import org.blackjack.model.Card;
 import org.blackjack.model.Game;
 import org.blackjack.model.enums.GameStatus;
 import org.blackjack.repositories.GameRepository;
+import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+@Service
 public class TurnService {
 
     private final GameRepository gameRepository;

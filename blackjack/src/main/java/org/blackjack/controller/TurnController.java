@@ -40,6 +40,11 @@ public class TurnController {
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Player chooses to stand")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Player stands"),
+            @ApiResponse(responseCode = "400", description = "Invalid input"),
+    })
     @PutMapping("/{id}/stand")
     public Mono<ResponseEntity<Object>> playerStands(@PathVariable String id) {
         return turnService.playerStands(id)

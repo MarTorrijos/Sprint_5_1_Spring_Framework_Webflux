@@ -26,7 +26,7 @@ class PlayerServiceTest {
 
     @BeforeEach
     void setUp() {
-        testPlayer = new Player(1, "Player", 100);
+        testPlayer = new Player("1", "Player", 100);
     }
 
     @Test

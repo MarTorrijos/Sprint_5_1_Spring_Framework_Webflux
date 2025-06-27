@@ -18,11 +18,11 @@ public class PlayerService {
         return playerRepository.save(player);
     }
 
-    public Mono<Player> getPlayer(int id) {
+    public Mono<Player> getPlayer(String id) {
         return playerRepository.findById(id);
     }
 
-    public Mono<Player> updatePlayer(int id, Player player) {
+    public Mono<Player> updatePlayer(String id, Player player) {
         return playerRepository.findById(id)
                 .flatMap(existingPlayer -> {
                     player.setId(id);
@@ -30,7 +30,7 @@ public class PlayerService {
                 });
     }
 
-    public Mono<Boolean> deletePlayer(int id) {
+    public Mono<Boolean> deletePlayer(String id) {
         return playerRepository.findById(id)
                 .flatMap(player -> playerRepository.deleteById(id).thenReturn(true))
                 .defaultIfEmpty(false);

@@ -30,7 +30,7 @@ public class PlayerControllerTest {
 
     @BeforeEach
     void setUp() {
-        testPlayer = new Player(1, "Player", 100);
+        testPlayer = new Player("1", "Player", 100);
     }
 
     @Test
@@ -63,7 +63,7 @@ public class PlayerControllerTest {
 
     @Test
     void updatePlayer() {
-        int playerId = testPlayer.getId();
+        String playerId = testPlayer.getId();
 
         when(playerService.updatePlayer(playerId, testPlayer)).thenReturn(Mono.just(testPlayer));
 
@@ -79,7 +79,7 @@ public class PlayerControllerTest {
 
     @Test
     void deletePlayer() {
-        int playerId = testPlayer.getId();
+        String playerId = testPlayer.getId();
 
         when(playerService.deletePlayer(playerId)).thenReturn(Mono.just(true));
 

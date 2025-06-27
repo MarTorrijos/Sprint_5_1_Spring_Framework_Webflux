@@ -14,7 +14,7 @@ import org.springframework.data.relational.core.mapping.Table;
 public class Player {
 
     @Id
-    private int id;
+    private String id;
     private String name;  // 100 char, TODO validate this
     private int gamesWon;
 

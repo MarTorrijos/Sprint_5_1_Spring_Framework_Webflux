@@ -33,7 +33,9 @@ public class GameService {
 
         game.setGameStatus(GameStatus.PLAYING);
 
-        return gameRepository.save(game);
+        return Mono.just(game)
+                .flatMap(gameRepository::save)
+                .defaultIfEmpty(game);
     }
 
     public Mono<Game> getGame(String id) {

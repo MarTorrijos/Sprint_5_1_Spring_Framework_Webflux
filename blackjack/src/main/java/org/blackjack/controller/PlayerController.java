@@ -37,7 +37,7 @@ public class PlayerController {
             @ApiResponse(responseCode = "204", description = "No player found by this id")
     })
     @GetMapping("/{id}")
-    public Mono<ResponseEntity<Player>> getPlayer(@PathVariable int id) {
+    public Mono<ResponseEntity<Player>> getPlayer(@PathVariable String id) {
         return playerService.getPlayer(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
@@ -49,7 +49,7 @@ public class PlayerController {
             @ApiResponse(responseCode = "204", description = "No player found by this id")
     })
     @PutMapping("/{id}")
-    public Mono<ResponseEntity<Player>> updatePlayer(@PathVariable int id, @RequestBody Player player) {
+    public Mono<ResponseEntity<Player>> updatePlayer(@PathVariable String id, @RequestBody Player player) {
         return playerService.updatePlayer(id, player)
                 .map(ResponseEntity::ok)
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
@@ -61,7 +61,7 @@ public class PlayerController {
             @ApiResponse(responseCode = "204", description = "No player found by this id")
     })
     @DeleteMapping("/{id}")
-    public Mono<ResponseEntity<Void>> deletePlayer(@PathVariable int id) {
+    public Mono<ResponseEntity<Void>> deletePlayer(@PathVariable String id) {
         return playerService.deletePlayer(id)
                 .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
     }

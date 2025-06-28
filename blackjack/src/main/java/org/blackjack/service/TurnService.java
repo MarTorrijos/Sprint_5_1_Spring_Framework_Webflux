@@ -32,6 +32,7 @@ public class TurnService {
 
     private Mono<Game> updatePlayerHand(Card newCard, Game game) {
         game.getPlayerHand().getCards().add(newCard);
+        game.getPlayerHand().setValue();
         return Mono.just(game);
     }
 
@@ -46,6 +47,7 @@ public class TurnService {
 
     private Mono<Game> updateCroupierHand(Card newCard, Game game) {
         game.getCroupierHand().getCards().add(newCard);
+        game.getCroupierHand().setValue();
         return Mono.just(game);
     }
 

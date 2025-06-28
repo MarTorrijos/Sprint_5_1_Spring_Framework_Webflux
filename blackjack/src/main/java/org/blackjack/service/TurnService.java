@@ -30,19 +30,32 @@ public class TurnService {
                 .flatMap(gameRepository::save);
     }
 
-    private Mono<Game> updatePlayerHand(Card newCard, Game game) {
-        game.getPlayerHand().getCards().add(newCard);
-        game.getPlayerHand().setValue();
-        return Mono.just(game);
-    }
-
-    public Mono<Game> dealCardToCroupier(String gameId) {
+    public Mono<Game> dealTwoCardsToPlayer(String gameId) {
         return gameRepository.findById(gameId)
                 .flatMap(gameValidator::validateGameStatus)
                 .flatMap(deckService::initializeDeck)
                 .flatMap(game -> deckService.drawCard(game)
-                        .flatMap(newCard -> updateCroupierHand(newCard, game)))
+                        .flatMap(firstCard -> updatePlayerHand(firstCard, game))
+                        .flatMap(updatedGame -> deckService.drawCard(updatedGame)
+                                .flatMap(secondCard -> updatePlayerHand(secondCard, updatedGame))))
                 .flatMap(gameRepository::save);
+    }
+
+    public Mono<Game> dealTwoCardsToCroupier(String gameId) {
+        return gameRepository.findById(gameId)
+                .flatMap(gameValidator::validateGameStatus)
+                .flatMap(deckService::initializeDeck)
+                .flatMap(game -> deckService.drawCard(game)
+                        .flatMap(firstCard -> updateCroupierHand(firstCard, game))
+                        .flatMap(updatedGame -> deckService.drawCard(updatedGame)
+                                .flatMap(secondCard -> updateCroupierHand(secondCard, updatedGame))))
+                .flatMap(gameRepository::save);
+    }
+
+    private Mono<Game> updatePlayerHand(Card newCard, Game game) {
+        game.getPlayerHand().getCards().add(newCard);
+        game.getPlayerHand().setValue();
+        return Mono.just(game);
     }
 
     private Mono<Game> updateCroupierHand(Card newCard, Game game) {

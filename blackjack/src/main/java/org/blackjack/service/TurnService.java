@@ -27,6 +27,7 @@ public class TurnService {
                 .flatMap(deckService::initializeDeck)
                 .flatMap(game -> deckService.drawCard(game)
                         .flatMap(newCard -> updatePlayerHand(newCard, game)))
+                .flatMap(this::isGameFinished)
                 .flatMap(gameRepository::save);
     }
 
@@ -72,6 +73,13 @@ public class TurnService {
                             .then(Mono.just("Player has stood. Game is now finished."));
                 })
                 .defaultIfEmpty("Game not found or already finished.");
+    }
+
+    public Mono<Game> isGameFinished(Game game) {
+        if (game.getPlayerHand().getValue() > 21 || game.getCroupierHand().getValue() > 21) {
+            game.setGameStatus(GameStatus.FINISHED);
+        }
+        return gameRepository.save(game);
     }
 
 }

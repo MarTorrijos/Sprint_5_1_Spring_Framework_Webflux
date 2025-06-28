@@ -2,6 +2,7 @@ package org.blackjack.validations;
 
 import org.blackjack.exceptions.DeckEmptyException;
 import org.blackjack.model.Deck;
+import org.blackjack.model.Game;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 

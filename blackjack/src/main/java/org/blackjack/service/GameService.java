@@ -1,8 +1,6 @@
 package org.blackjack.service;
 
-import org.blackjack.model.Deck;
 import org.blackjack.model.Game;
-import org.blackjack.model.Hand;
 import org.blackjack.model.enums.GameStatus;
 import org.blackjack.repositories.GameRepository;
 import org.springframework.stereotype.Service;
@@ -14,24 +12,20 @@ public class GameService {
 
     private final GameRepository gameRepository;
     private final TurnService turnService;
+    private final HandService handService;
+    private final DeckService deckService;
 
-    public GameService(GameRepository gameRepository, TurnService turnService) {
+    public GameService(GameRepository gameRepository, TurnService turnService, HandService handService,
+                       DeckService deckService) {
         this.gameRepository = gameRepository;
         this.turnService = turnService;
+        this.handService = handService;
+        this.deckService = deckService;
     }
 
     public Mono<Game> createGame(Game game) {
-        if (game.getDeck() == null) {
-            game.setDeck(new Deck());
-        }
-
-        if (game.getPlayerHand() == null) {
-            game.setPlayerHand(new Hand());
-        }
-
-        if (game.getCroupierHand() == null) {
-            game.setCroupierHand(new Hand());
-        }
+        deckService.initializeDeck(game);
+        handService.initializeHands(game);
 
         game.setGameStatus(GameStatus.PLAYING);
 

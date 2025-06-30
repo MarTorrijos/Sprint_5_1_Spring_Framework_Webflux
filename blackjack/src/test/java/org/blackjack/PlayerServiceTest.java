@@ -1,5 +1,6 @@
 package org.blackjack;
 
+import org.blackjack.exceptions.PlayerNotFoundException;
 import org.blackjack.model.Player;
 import org.blackjack.repositories.PlayerRepository;
 import org.blackjack.service.PlayerService;
@@ -17,11 +18,9 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PlayerServiceTest {
 
-    @Mock
-    private PlayerRepository playerRepository;
+    @Mock private PlayerRepository playerRepository;
+    @InjectMocks private PlayerService playerService;
 
-    @InjectMocks
-    private PlayerService playerService;
     private Player testPlayer;
 
     @BeforeEach
@@ -33,56 +32,86 @@ class PlayerServiceTest {
     void testAddPlayer() {
         when(playerRepository.save(testPlayer)).thenReturn(Mono.just(testPlayer));
 
-        Mono<Player> resultMono = playerService.addPlayer(testPlayer);
-
-        StepVerifier.create(resultMono)
+        StepVerifier.create(playerService.addPlayer(testPlayer))
                 .expectNext(testPlayer)
                 .verifyComplete();
 
-        verify(playerRepository, times(1)).save(testPlayer);
+        verify(playerRepository).save(testPlayer);
     }
 
     @Test
     void testGetPlayer() {
-        when(playerRepository.findById(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
+        when(playerRepository.findById("1")).thenReturn(Mono.just(testPlayer));
 
-        Mono<Player> resultMono = playerService.getPlayer(testPlayer.getId());
-
-        StepVerifier.create(resultMono)
+        StepVerifier.create(playerService.getPlayer("1"))
                 .expectNext(testPlayer)
                 .verifyComplete();
 
-        verify(playerRepository, times(1)).findById(testPlayer.getId());
+        verify(playerRepository).findById("1");
+    }
+
+    @Test
+    void testGetPlayerNotFound() {
+        when(playerRepository.findById("999")).thenReturn(Mono.empty());
+
+        StepVerifier.create(playerService.getPlayer("999"))
+                .expectErrorMatches(err -> err instanceof PlayerNotFoundException &&
+                        err.getMessage().equals("Player not found with id: 999"))
+                .verify();
+
+        verify(playerRepository).findById("999");
     }
 
     @Test
     void testUpdatePlayer() {
-        when(playerRepository.findById(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
+        when(playerRepository.findById("1")).thenReturn(Mono.just(testPlayer));
         when(playerRepository.save(testPlayer)).thenReturn(Mono.just(testPlayer));
 
-        Mono<Player> resultMono = playerService.updatePlayer(testPlayer.getId(), testPlayer);
-
-        StepVerifier.create(resultMono)
+        StepVerifier.create(playerService.updatePlayer("1", testPlayer))
                 .expectNext(testPlayer)
                 .verifyComplete();
 
-        verify(playerRepository, times(1)).findById(testPlayer.getId());
-        verify(playerRepository, times(1)).save(testPlayer);
+        verify(playerRepository).findById("1");
+        verify(playerRepository).save(testPlayer);
+    }
+
+    @Test
+    void testUpdatePlayerNotFound() {
+        when(playerRepository.findById("999")).thenReturn(Mono.empty());
+
+        StepVerifier.create(playerService.updatePlayer("999", testPlayer))
+                .expectErrorMatches(err -> err instanceof PlayerNotFoundException &&
+                        err.getMessage().equals("Player not found with id: 999"))
+                .verify();
+
+        verify(playerRepository).findById("999");
+        verify(playerRepository, never()).save(any());
     }
 
     @Test
     void testDeletePlayer() {
-        when(playerRepository.findById(testPlayer.getId())).thenReturn(Mono.just(testPlayer));
-        when(playerRepository.deleteById(testPlayer.getId())).thenReturn(Mono.empty());
+        when(playerRepository.findById("1")).thenReturn(Mono.just(testPlayer));
+        when(playerRepository.deleteById("1")).thenReturn(Mono.empty());
 
-        Mono<Boolean> resultMono = playerService.deletePlayer(testPlayer.getId());
-
-        StepVerifier.create(resultMono)
+        StepVerifier.create(playerService.deletePlayer("1"))
                 .expectNext(true)
                 .verifyComplete();
 
-        verify(playerRepository, times(1)).findById(testPlayer.getId());
-        verify(playerRepository, times(1)).deleteById(testPlayer.getId());
+        verify(playerRepository).findById("1");
+        verify(playerRepository).deleteById("1");
+    }
+
+    @Test
+    void testDeletePlayerNotFound() {
+        when(playerRepository.findById("999")).thenReturn(Mono.empty());
+
+        StepVerifier.create(playerService.deletePlayer("999"))
+                .expectErrorMatches(err -> err instanceof PlayerNotFoundException &&
+                        err.getMessage().equals("Player not found with id: 999"))
+                .verify();
+
+        verify(playerRepository).findById("999");
+        verify(playerRepository, never()).deleteById((String) any());
     }
 
 }

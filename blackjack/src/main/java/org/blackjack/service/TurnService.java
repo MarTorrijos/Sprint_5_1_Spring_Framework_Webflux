@@ -86,20 +86,22 @@ public class TurnService {
     }
 
     private Mono<Game> calculateWinner(Game game, Player player) {
-        if (game.getPlayerHand().getValue() > 21) {
+        int playerValue = game.getPlayerHand().getValue();
+        if (playerValue > 21) {
             game.setPlayerWon(false);
-        } else {
-            int playerValue = game.getPlayerHand().getValue();
-            int croupierValue = game.getCroupierHand().getValue();
-            if (playerValue > croupierValue) {
-                game.setPlayerWon(true);
-                player.setGamesWon(player.getGamesWon() + 1);
-                return playerRepository.save(player).then(gameRepository.save(game));
-            } else {
-                game.setPlayerWon(false);
-            }
+            return gameRepository.save(game);
         }
+
+        int croupierValue = game.getCroupierHand().getValue();
+        if (playerValue > croupierValue) {
+            game.setPlayerWon(true);
+            player.setGamesWon(player.getGamesWon() + 1);
+            return playerRepository.save(player).then(gameRepository.save(game));
+        }
+
+        game.setPlayerWon(false);
         return gameRepository.save(game);
+
     }
 
     private Mono<Game> checkIfGameFinished(Game game) {

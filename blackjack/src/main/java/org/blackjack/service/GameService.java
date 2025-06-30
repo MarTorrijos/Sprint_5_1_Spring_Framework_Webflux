@@ -51,10 +51,4 @@ public class GameService {
                 .defaultIfEmpty(false);
     }
 
-    // TODO
-    // ACABAR ESTO, ahora mismo ni filtra ni nada
-    public Flux<Game> getRanking() {
-        return gameRepository.findAll();
-    }
-
 }

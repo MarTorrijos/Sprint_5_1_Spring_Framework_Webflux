@@ -8,6 +8,7 @@ import org.blackjack.service.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -64,6 +65,16 @@ public class PlayerController {
     public Mono<ResponseEntity<Void>> deletePlayer(@PathVariable String id) {
         return playerService.deletePlayer(id)
                 .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
+    }
+
+    @Operation(summary = "Show the ranking of games won")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Showing rankin")
+    })
+    @GetMapping("/ranking")
+    public Flux<ResponseEntity<Player>> getRanking() {
+        return playerService.getRanking()
+                .map(ResponseEntity::ok);
     }
 
 }

@@ -3,7 +3,10 @@ package org.blackjack.service;
 import org.blackjack.model.Player;
 import org.blackjack.repositories.PlayerRepository;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.Comparator;
 
 @Service
 public class PlayerService {
@@ -34,6 +37,12 @@ public class PlayerService {
         return playerRepository.findById(id)
                 .flatMap(player -> playerRepository.deleteById(id).thenReturn(true))
                 .defaultIfEmpty(false);
+    }
+
+    public Flux<Player> getRanking() {
+        return playerRepository.findAll()
+                .sort(Comparator.comparingInt(Player::getGamesWon).reversed()
+                        .thenComparing(Player::getName));
     }
 
 }

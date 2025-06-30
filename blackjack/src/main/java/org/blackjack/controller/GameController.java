@@ -26,7 +26,7 @@ public class GameController {
             @ApiResponse(responseCode = "201", description = "Game created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
-    @PostMapping
+    @PostMapping("/new")
     public Mono<ResponseEntity<Game>> createGame(@RequestBody Game game) {
         return gameService.createGame(game)
                 .map(savedGame -> ResponseEntity.status(HttpStatus.CREATED).body(savedGame));

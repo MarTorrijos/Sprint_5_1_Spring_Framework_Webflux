@@ -15,7 +15,7 @@ public class Player {
 
     @Id
     private String id;
-    private String name;  // 100 char, TODO validate this
+    private String name;
     private int gamesWon;
 
 }

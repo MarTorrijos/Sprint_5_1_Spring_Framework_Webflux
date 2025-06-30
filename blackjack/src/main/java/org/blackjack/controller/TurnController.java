@@ -23,38 +23,26 @@ public class TurnController {
         this.turnService = turnService;
     }
 
+    @PostMapping("/{id}/hit")
     @Operation(summary = "Deal a card to a player")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Card dealt"),
+            @ApiResponse(responseCode = "200", description = "Card dealt"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
-    @PostMapping("/{id}/hit")
     public Mono<ResponseEntity<Object>> dealCardToPlayer(@PathVariable String id) {
         return turnService.dealCardToPlayer(id)
-                .map(game -> ResponseEntity.ok((Object) game))
-                .onErrorResume(GameFinishedException.class, e -> {
-                    Map<String, String> errorResponse = new HashMap<>();
-                    errorResponse.put("message", e.getMessage());
-                    return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse));
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                .map(game -> ResponseEntity.ok((Object) game));
     }
 
+    @PutMapping("/{id}/stand")
     @Operation(summary = "Player chooses to stand")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Player stands"),
+            @ApiResponse(responseCode = "200", description = "Player stands"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
-    @PutMapping("/{id}/stand")
     public Mono<ResponseEntity<Object>> playerStands(@PathVariable String id) {
         return turnService.playerStands(id)
-                .map(message -> ResponseEntity.ok((Object) message))
-                .onErrorResume(GameFinishedException.class, e -> {
-                    Map<String, String> errorResponse = new HashMap<>();
-                    errorResponse.put("message", e.getMessage());
-                    return Mono.just(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse));
-                })
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                .map(message -> ResponseEntity.ok((Object) message));
     }
 
 }

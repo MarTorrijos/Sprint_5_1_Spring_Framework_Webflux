@@ -21,57 +21,57 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
+    @PostMapping
     @Operation(summary = "Create a new player")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Player created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
-    @PostMapping
     public Mono<ResponseEntity<Player>> addPlayer(@RequestBody Player player) {
         return playerService.addPlayer(player)
                 .map(savedPlayer -> ResponseEntity.status(HttpStatus.CREATED).body(savedPlayer));
     }
 
+    @GetMapping("/{id}")
     @Operation(summary = "Get a player by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Player found"),
             @ApiResponse(responseCode = "204", description = "No player found by this id")
     })
-    @GetMapping("/{id}")
     public Mono<ResponseEntity<Player>> getPlayer(@PathVariable String id) {
         return playerService.getPlayer(id)
                 .map(ResponseEntity::ok)
                 .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 
+    @PutMapping("/{id}")
     @Operation(summary = "Update a player selected by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Player updated successfully"),
             @ApiResponse(responseCode = "204", description = "No player found by this id")
     })
-    @PutMapping("/{id}")
     public Mono<ResponseEntity<Player>> updatePlayer(@PathVariable String id, @RequestBody Player player) {
         return playerService.updatePlayer(id, player)
                 .map(ResponseEntity::ok)
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
+    @DeleteMapping("/{id}")
     @Operation(summary = "Delete a player selected by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Player deleted successfully"),
             @ApiResponse(responseCode = "204", description = "No player found by this id")
     })
-    @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> deletePlayer(@PathVariable String id) {
         return playerService.deletePlayer(id)
                 .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/ranking")
     @Operation(summary = "Show the ranking of games won")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Showing rankin")
     })
-    @GetMapping("/ranking")
     public Flux<ResponseEntity<Player>> getRanking() {
         return playerService.getRanking()
                 .map(ResponseEntity::ok);

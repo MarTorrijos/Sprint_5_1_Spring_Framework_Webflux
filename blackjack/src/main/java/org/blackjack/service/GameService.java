@@ -1,5 +1,6 @@
 package org.blackjack.service;
 
+import org.blackjack.exceptions.GameNotFoundException;
 import org.blackjack.model.Game;
 import org.blackjack.model.enums.GameStatus;
 import org.blackjack.repositories.GameRepository;
@@ -9,7 +10,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class GameService {
-
     private final GameRepository gameRepository;
     private final TurnService turnService;
     private final HandService handService;
@@ -26,19 +26,16 @@ public class GameService {
     public Mono<Game> createGame(Game game) {
         deckService.initializeDeck(game);
         handService.initializeHands(game);
-
         game.setGameStatus(GameStatus.PLAYING);
 
         return Mono.just(game)
                 .flatMap(gameRepository::save)
-                .flatMap(savedGame ->
-                        turnService.dealTwoCards(savedGame.getId())
-                                .thenReturn(savedGame)
-                );
+                .flatMap(savedGame -> turnService.dealTwoCards(savedGame.getId()).thenReturn(savedGame));
     }
 
     public Mono<Game> getGame(String id) {
-        return gameRepository.findById(id);
+        return gameRepository.findById(id)
+                .switchIfEmpty(Mono.error(new GameNotFoundException("Game not found with id: " + id)));
     }
 
     public Flux<Game> getAllGames() {
@@ -48,7 +45,7 @@ public class GameService {
     public Mono<Boolean> deleteGame(String id) {
         return gameRepository.findById(id)
                 .flatMap(game -> gameRepository.deleteById(id).thenReturn(true))
-                .defaultIfEmpty(false);
+                .switchIfEmpty(Mono.error(new GameNotFoundException("Game not found with id: " + id)));
     }
 
 }

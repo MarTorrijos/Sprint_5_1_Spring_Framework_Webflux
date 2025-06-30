@@ -1,5 +1,6 @@
 package org.blackjack.service;
 
+import org.blackjack.exceptions.CardNullException;
 import org.blackjack.model.Card;
 import org.blackjack.model.Deck;
 import org.blackjack.model.Game;
@@ -9,7 +10,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class DeckService {
-
     private final DeckValidator deckValidator;
 
     public DeckService(DeckValidator deckValidator) {
@@ -26,7 +26,11 @@ public class DeckService {
 
     public Mono<Card> drawCard(Game game) {
         return deckValidator.validateDeck(game.getDeck())
-                .then(Mono.fromCallable(() -> game.getDeck().drawCard()));
+                .then(Mono.fromCallable(() -> {
+                    Card card = game.getDeck().drawCard();
+                    if (card == null) throw new CardNullException("Card draw returned null");
+                    return card;
+                }));
     }
 
 }

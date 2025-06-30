@@ -1,5 +1,7 @@
 package org.blackjack.service;
 
+import org.blackjack.exceptions.GameFinishedException;
+import org.blackjack.exceptions.GameNotFoundException;
 import org.blackjack.model.Card;
 import org.blackjack.model.Game;
 import org.blackjack.model.Player;
@@ -12,39 +14,45 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class TurnService {
-
     private final GameRepository gameRepository;
     private final PlayerRepository playerRepository;
     private final GameValidator gameValidator;
     private final DeckService deckService;
 
-    public TurnService(GameRepository gameRepository, PlayerRepository playerRepository, GameValidator gameValidator,
-                       DeckService deckService) {
-        this.playerRepository = playerRepository;
+    public TurnService(GameRepository gameRepository, PlayerRepository playerRepository,
+                       GameValidator gameValidator, DeckService deckService) {
         this.gameRepository = gameRepository;
+        this.playerRepository = playerRepository;
         this.gameValidator = gameValidator;
         this.deckService = deckService;
     }
 
     public Mono<Game> dealCardToPlayer(String gameId) {
         return gameRepository.findById(gameId)
+                .switchIfEmpty(Mono.error(new GameNotFoundException("Game not found with id: " + gameId)))
                 .flatMap(gameValidator::validateGameStatus)
-                .flatMap(game -> drawCardAndUpdateHand(game, true))
+                .flatMap(game -> {
+                    if (game.getGameStatus() == GameStatus.FINISHED) {
+                        throw new GameFinishedException("Cannot deal card. Game already finished.");
+                    }
+                    return drawCardAndUpdateHand(game, true);
+                })
                 .flatMap(this::checkIfGameFinished)
                 .flatMap(gameRepository::save);
     }
 
     public Mono<Game> dealTwoCards(String gameId) {
         return gameRepository.findById(gameId)
+                .switchIfEmpty(Mono.error(new GameNotFoundException("Game not found with id: " + gameId)))
                 .flatMap(gameValidator::validateGameStatus)
-                .flatMap(game -> drawTwoCardsAndUpdateHand(game, true))
-                .flatMap(game -> drawTwoCardsAndUpdateHand(game, false))
+                .flatMap(game -> drawTwoCardsAndUpdateHand(game, true)
+                        .flatMap(updated -> drawTwoCardsAndUpdateHand(updated, false)))
                 .flatMap(gameRepository::save);
     }
 
     private Mono<Game> drawCardAndUpdateHand(Game game, boolean isPlayer) {
         return deckService.drawCard(game)
-                .flatMap(newCard -> updateHand(newCard, game, isPlayer));
+                .flatMap(card -> updateHand(card, game, isPlayer));
     }
 
     private Mono<Game> drawTwoCardsAndUpdateHand(Game game, boolean isPlayer) {
@@ -52,12 +60,12 @@ public class TurnService {
                 .flatMap(updatedGame -> drawCardAndUpdateHand(updatedGame, isPlayer));
     }
 
-    private Mono<Game> updateHand(Card newCard, Game game, boolean isPlayer) {
+    private Mono<Game> updateHand(Card card, Game game, boolean isPlayer) {
         if (isPlayer) {
-            game.getPlayerHand().getCards().add(newCard);
+            game.getPlayerHand().getCards().add(card);
             game.getPlayerHand().setValue();
         } else {
-            game.getCroupierHand().getCards().add(newCard);
+            game.getCroupierHand().getCards().add(card);
             game.getCroupierHand().setValue();
         }
         return Mono.just(game);
@@ -65,12 +73,11 @@ public class TurnService {
 
     public Mono<String> playerStands(String gameId) {
         return gameRepository.findById(gameId)
+                .switchIfEmpty(Mono.error(new GameNotFoundException("Game not found with id: " + gameId)))
                 .flatMap(game -> finishGame(game)
-                        .flatMap(updatedGame -> {
-                            return playerRepository.findById(String.valueOf(updatedGame.getPlayer_id()))
-                                    .flatMap(player -> calculateWinner(updatedGame, player));
-                        })
-                        .then(Mono.just("Player has stood. Game is now finished")));
+                        .flatMap(updated -> playerRepository.findById(String.valueOf(updated.getPlayer_id()))
+                                .flatMap(player -> calculateWinner(updated, player))
+                                .then(Mono.just("Player has stood. Game is now finished"))));
     }
 
     private Mono<Game> finishGame(Game game) {
@@ -84,14 +91,10 @@ public class TurnService {
         } else {
             int playerValue = game.getPlayerHand().getValue();
             int croupierValue = game.getCroupierHand().getValue();
-
             if (playerValue > croupierValue) {
                 game.setPlayerWon(true);
                 player.setGamesWon(player.getGamesWon() + 1);
-                return playerRepository.save(player)
-                        .then(gameRepository.save(game));
-            } else if (playerValue < croupierValue) {
-                game.setPlayerWon(false);
+                return playerRepository.save(player).then(gameRepository.save(game));
             } else {
                 game.setPlayerWon(false);
             }

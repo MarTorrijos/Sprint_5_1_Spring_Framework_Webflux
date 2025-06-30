@@ -1,5 +1,6 @@
 package org.blackjack.service;
 
+import org.blackjack.exceptions.PlayerNotFoundException;
 import org.blackjack.model.Player;
 import org.blackjack.repositories.PlayerRepository;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,6 @@ import java.util.Comparator;
 
 @Service
 public class PlayerService {
-
     private final PlayerRepository playerRepository;
 
     public PlayerService(PlayerRepository playerRepository) {
@@ -22,11 +22,13 @@ public class PlayerService {
     }
 
     public Mono<Player> getPlayer(String id) {
-        return playerRepository.findById(id);
+        return playerRepository.findById(id)
+                .switchIfEmpty(Mono.error(new PlayerNotFoundException("Player not found with id: " + id)));
     }
 
     public Mono<Player> updatePlayer(String id, Player player) {
         return playerRepository.findById(id)
+                .switchIfEmpty(Mono.error(new PlayerNotFoundException("Player not found with id: " + id)))
                 .flatMap(existingPlayer -> {
                     player.setId(id);
                     return playerRepository.save(player);
@@ -36,7 +38,7 @@ public class PlayerService {
     public Mono<Boolean> deletePlayer(String id) {
         return playerRepository.findById(id)
                 .flatMap(player -> playerRepository.deleteById(id).thenReturn(true))
-                .defaultIfEmpty(false);
+                .switchIfEmpty(Mono.error(new PlayerNotFoundException("Player not found with id: " + id)));
     }
 
     public Flux<Player> getRanking() {

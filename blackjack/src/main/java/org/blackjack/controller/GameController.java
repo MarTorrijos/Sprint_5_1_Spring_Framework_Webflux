@@ -21,49 +21,51 @@ public class GameController {
         this.gameService = gameService;
     }
 
+    @PostMapping("/new")
     @Operation(summary = "Create a new game")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Game created"),
             @ApiResponse(responseCode = "400", description = "Invalid input"),
     })
-    @PostMapping("/new")
     public Mono<ResponseEntity<Game>> createGame(@RequestBody Game game) {
         return gameService.createGame(game)
                 .map(savedGame -> ResponseEntity.status(HttpStatus.CREATED).body(savedGame));
     }
 
+    @GetMapping("/{id}")
     @Operation(summary = "Get a game by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Game found"),
-            @ApiResponse(responseCode = "204", description = "No game found by this id")
+            @ApiResponse(responseCode = "404", description = "No game found by this id")
     })
-    @GetMapping("/{id}")
     public Mono<ResponseEntity<Game>> getGame(@PathVariable String id) {
         return gameService.getGame(id)
-                .map(ResponseEntity::ok)
-                .defaultIfEmpty(ResponseEntity.notFound().build());
+                .map(ResponseEntity::ok);
     }
 
+    @GetMapping
     @Operation(summary = "Get all games")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "All games"),
             @ApiResponse(responseCode = "204", description = "No games found")
     })
-    @GetMapping
     public Flux<ResponseEntity<Game>> getAllGames() {
         return gameService.getAllGames()
                 .map(ResponseEntity::ok);
     }
 
+    @DeleteMapping("/{id}")
     @Operation(summary = "Delete a game selected by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Game deleted successfully"),
-            @ApiResponse(responseCode = "204", description = "No game found by this id")
+            @ApiResponse(responseCode = "404", description = "No game found by this id")
     })
-    @DeleteMapping("/{id}")
     public Mono<ResponseEntity<Void>> deleteGame(@PathVariable String id) {
         return gameService.deleteGame(id)
-                .map(deleted -> deleted ? ResponseEntity.ok().build() : ResponseEntity.notFound().build());
+                .map(deleted -> {
+                    if (deleted) return ResponseEntity.ok().build();
+                    throw new RuntimeException("Game not found with id: " + id);
+                });
     }
 
 }

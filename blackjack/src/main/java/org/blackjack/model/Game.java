@@ -25,7 +25,7 @@ public class Game {
     private Deck deck;
 
     private GameStatus gameStatus;
-    private String result;
+    private boolean playerWon;
     private int bet;
 
 }

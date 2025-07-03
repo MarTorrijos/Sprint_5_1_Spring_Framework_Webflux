@@ -1,0 +1,1853 @@
+[{
+  "_id": {
+    "$oid": "685faa4961b19ff8acaf612a"
+  },
+  "player_id": 1,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      }
+    ],
+    "value": 28
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      }
+    ],
+    "value": 7
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      }
+    ]
+  },
+  "gameStatus": "FINISHED",
+  "bet": 0,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "685fab3600b40c84ee4266e0"
+  },
+  "player_id": 1,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      }
+    ],
+    "value": 20
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      }
+    ],
+    "value": 20
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      }
+    ]
+  },
+  "gameStatus": "FINISHED",
+  "bet": 0,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "685fac6ca644e860357add57"
+  },
+  "player_id": 1,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      }
+    ],
+    "value": 21
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      }
+    ],
+    "value": 16
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      }
+    ]
+  },
+  "gameStatus": "FINISHED",
+  "bet": 0,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "6862750e6d444893af5e2d3b"
+  },
+  "player_id": 10,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      }
+    ],
+    "value": 20
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      }
+    ],
+    "value": 17
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      }
+    ]
+  },
+  "gameStatus": "FINISHED",
+  "playerWon": true,
+  "bet": 100,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "68627a7bd290825ad4595647"
+  },
+  "player_id": 10,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      }
+    ],
+    "value": 14
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      }
+    ],
+    "value": 13
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      }
+    ]
+  },
+  "gameStatus": "PLAYING",
+  "playerWon": false,
+  "bet": 100,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "68627ecdcd6427341fca51f5"
+  },
+  "player_id": 10,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      }
+    ],
+    "value": 20
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      }
+    ],
+    "value": 12
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      }
+    ]
+  },
+  "gameStatus": "PLAYING",
+  "playerWon": false,
+  "bet": 100,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "6862807296876a5864a695c2"
+  },
+  "player_id": 10,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      }
+    ],
+    "value": 26
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      }
+    ],
+    "value": 20
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      }
+    ]
+  },
+  "gameStatus": "FINISHED",
+  "playerWon": false,
+  "bet": 100,
+  "_class": "org.blackjack.model.Game"
+},
+{
+  "_id": {
+    "$oid": "6862808e96876a5864a695c3"
+  },
+  "player_id": 10,
+  "playerHand": {
+    "cards": [
+      {
+        "rank": "THREE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "SPADES"
+      }
+    ],
+    "value": 13
+  },
+  "croupierHand": {
+    "cards": [
+      {
+        "rank": "TWO",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "DIAMONDS"
+      }
+    ],
+    "value": 9
+  },
+  "deck": {
+    "cards": [
+      {
+        "rank": "FIVE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TWO",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FOUR",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SIX",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "TEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "SIX",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "KING",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "QUEEN",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "THREE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "KING",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "JACK",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "EIGHT",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "SEVEN",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "KING",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "NINE",
+        "suit": "DIAMONDS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "SPADES"
+      },
+      {
+        "rank": "NINE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "ACE",
+        "suit": "HEARTS"
+      },
+      {
+        "rank": "FIVE",
+        "suit": "CLUBS"
+      },
+      {
+        "rank": "TWO",
+        "suit": "HEARTS"
+      }
+    ]
+  },
+  "gameStatus": "FINISHED",
+  "playerWon": true,
+  "bet": 100,
+  "_class": "org.blackjack.model.Game"
+}]
